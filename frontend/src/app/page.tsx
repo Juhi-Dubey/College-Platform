@@ -105,11 +105,11 @@ export default function Home() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
       
-      className="w-full max-w-[1500px] mx-auto flex flex-col md:flex-row items-start gap-10 px-6 pt-8"
+      className="w-full max-w-[1400px] mx-auto flex flex-col md:flex-row items-start gap-7 px-6 pt-8"
     >
       {/* Sidebar Filters */}
-      <aside className="w-full md:w-64 flex-shrink-0 md:-ml-6 self-start sticky top-24">
-        <div className="bg-white/5 p-6 pb-8 rounded-2xl shadow-2xl border border-indigo-500/20 backdrop-blur-md">
+      <aside className="w-full md:w-60 flex-shrink-0 md:-ml-6 self-start sticky top-24">
+        <div className="bg-white/5 p-5 pb-6 rounded-2xl shadow-2xl border border-indigo-500/20 backdrop-blur-md">
           <h2 className="text-lg font-bold text-white
            mb-4">Filters</h2>
           <div className="space-y-4">
@@ -272,12 +272,12 @@ export default function Home() {
       {/* Main Content */}
       <div className="flex-1">
         <div
-            className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-950 via-gray-900 to-black px-8 py-10 mb-16 shadow-2xl border border-indigo-500/20">
+            className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-950 via-gray-900 to-black px-7 py-8 mb-16 shadow-2xl border border-indigo-500/20">
 
           <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top_right,_#6366f1,_transparent_40%)]"></div>
 
           <div className="relative z-10">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+            <h1 className="text-4xl md:text-5xl leading-[1.05] font-extrabold text-white leading-tight">
               Discover Top Colleges
             </h1>
 
@@ -293,13 +293,13 @@ export default function Home() {
                   placeholder="Search colleges like IIT Bombay, DTU..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="w-full min-w-0 bg-transparent px-4 py-4 text-white placeholder-gray-400 focus:outline-none"
+                  className="w-full min-w-0 bg-transparent px-4 py-3 text-white placeholder-gray-400 focus:outline-none"
                 />
 
                 <button
                   type="button"
                   onClick={() => setCurrentPage(1)}
-                  className="group flex-shrink-0 flex items-center justify-center bg-gradient-to-r from-indigo-600 to-purple-600 px-5 py-3.5 text-white rounded-xl transition-all duration-300 hover:brightness-110 hover:-translate-y-0.5 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/30"
+                  className="group flex-shrink-0 flex items-center justify-center bg-gradient-to-r from-indigo-600 to-purple-600 px-5 py-3 text-white rounded-xl transition-all duration-300 hover:brightness-110 hover:-translate-y-0.5 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/30"
                 >
                   <Search
                     size={22}
@@ -321,7 +321,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      <div className="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-md">
+      <div className="bg-white/5 border border-white/10 rounded-3xl p-6 px-8 backdrop-blur-md">
         <div id="featured-colleges"
           className="flex items-center justify-between mb-6">
           <div>
