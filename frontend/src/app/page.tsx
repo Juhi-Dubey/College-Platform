@@ -323,7 +323,7 @@ export default function Home() {
         </div>
       <div className="bg-white/5 border border-white/10 rounded-3xl p-6 px-8 backdrop-blur-md">
         <div id="featured-colleges"
-          className="flex items-center justify-between mb-6">
+          className="flex items-center justify-between mb-8">
           <div>
             <h2 className="text-3xl font-bold text-white">
               Featured Colleges
