@@ -3,7 +3,7 @@ import prisma from '../config/db';
 import { AuthRequest } from '../middlewares/auth.middleware';
 
 export const saveComparison = async (req: AuthRequest, res: Response) => {
-  try {
+  try {  
     const userId = req.user?.id;
     const { colleges } = req.body;
 
@@ -11,16 +11,34 @@ export const saveComparison = async (req: AuthRequest, res: Response) => {
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
+    const sortedColleges = [...colleges].sort();
+
+    const existingComparison =
+      await prisma.savedComparison.findFirst({
+        where: {
+          userId,
+          colleges: {
+            equals: sortedColleges,
+          },
+        },
+      });
+
+    if (existingComparison) {
+      return res.status(400).json({
+        error: 'Comparison already saved',
+      });
+    }
+
     const comparison = await prisma.savedComparison.create({
       data: {
         userId,
-        colleges,
+        colleges: sortedColleges,
+        // colleges,
       },
     });
 
     res.status(201).json(comparison);
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: 'Failed to save comparison' });
   }
 };

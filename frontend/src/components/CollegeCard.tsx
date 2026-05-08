@@ -16,8 +16,10 @@ interface College {
 
 export default function CollegeCard({ 
   college, 
+  hideSaveButton = false,
 }: { 
   college: College;
+  hideSaveButton?: boolean;
 }) {
   const [saving, setSaving] = useState(false);
   
@@ -47,6 +49,7 @@ export default function CollegeCard({
 
         <div className="relative">
           <img
+            
             src={college.image || '/colleges/default.jpg'}
             alt={college.name}
             className="w-full h-64 object-cover rounded-t-xl transition-transform duration-500 group-hover:scale-105"
@@ -81,20 +84,28 @@ export default function CollegeCard({
           </div>
         </div>
         <div className="px-6 py-4 bg-white/80 backdrop-blur-sm border-t border-gray-100">
-          <div className="flex gap-2">
-
-            <button
-              disabled={saving}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                handleSave(college.id);
-              }}
-              className="px-4 py-2 text-sm bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:scale-105 transition-all duration-500 ease-out shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              {saving ? 'Saving...' : '❤️ Save'}
-            </button>
-          </div>
+          
+          {!hideSaveButton && (
+            <div className="flex gap-2">
+              <button
+                disabled={saving}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleSave(college.id);
+                }}
+                className="px-4 py-2 text-sm bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:scale-105 transition-all duration-500 ease-out shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {saving ? (
+                  <div className="flex justify-center items-center">
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                ) : (
+                  '❤️ Save'
+          )}
+              </button>
+            </div>
+          )}
         </div>
     </div>
     </Link>

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { fetchAPI } from '@/lib/api';
 import { useRouter } from 'next/navigation';
-
+import { toast } from 'sonner';
 
 export default function SavedComparisonsPage() {
     const [comparisons, setComparisons] = useState<any[]>([]);
@@ -21,8 +21,9 @@ export default function SavedComparisonsPage() {
             setComparisons((prev) =>
             prev.filter((comparison) => comparison.id !== id)
             );
+            toast.success('Comparison removed successfully');
         } catch (error) {
-            console.error('Failed to delete comparison');
+            toast.error('Failed to remove comparison');
         } finally {
             setRemovingId('');
         }
@@ -34,7 +35,7 @@ export default function SavedComparisonsPage() {
             const data = await fetchAPI('/comparisons');
             setComparisons(data);
         } catch (error) {
-            console.error(error);
+            toast.error('Failed to load comparisons');
         }
         };
 
@@ -83,7 +84,13 @@ export default function SavedComparisonsPage() {
                     }}
                     className="mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm transition disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                    {removingId === comparison.id ? 'Removing...' : 'Remove Comparison'}
+                    {removingId === comparison.id ? (
+                        <div className="flex justify-center items-center">
+                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        </div>
+                        ) : (
+                        'Remove Comparison'
+                        )}
                 </button>
             </div>
             ))}

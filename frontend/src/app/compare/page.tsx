@@ -71,7 +71,7 @@ export default function ComparePage() {
 
       toast.success('Comparison saved!');
     } catch (error: any) {
-      toast.error(error.message || 'Failed to save comparison');
+      toast.error(error.error || 'Failed to save comparison');
     } finally {
       setSavingComparison(false);
     }

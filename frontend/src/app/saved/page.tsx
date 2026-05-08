@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { fetchAPI } from '@/lib/api';
 import CollegeCard from '@/components/CollegeCard';
 import Link from 'next/link';
+import { toast } from 'sonner';
 
 export default function SavedCollegesPage() {
 
@@ -16,6 +17,7 @@ export default function SavedCollegesPage() {
       fees: number;
       rating: number;
       placementPercentage: number;
+      image?: string;
     };
   }
 
@@ -28,7 +30,26 @@ export default function SavedCollegesPage() {
     const loadSaved = async () => {
       try {
         const data = await fetchAPI('/saved');
-        setSavedColleges(data);
+        const imageMap: Record<string, string> = {
+          'Indian Institute of Technology Bombay': '/colleges/iitb.jpg',
+          'Indian Institute of Technology Delhi': '/colleges/iitd.jpg',
+          'Birla Institute of Technology and Science': '/colleges/bitsp.jpg',
+          'National Institute of Technology Trichy': '/colleges/nitit.jpg',
+          'Vellore Institute of Technology': '/colleges/vit.jpg',
+          'Delhi Technological University': '/colleges/dtu.jpg',
+          'Manipal Institute of Technology': '/colleges/mit.jpg',
+        };
+
+        const savedWithImages = data.map((saved: any) => ({
+          ...saved,
+          college: {
+            ...saved.college,
+            image:
+              imageMap[saved.college.name] || '/colleges/default.jpg',
+          },
+        }));
+
+        setSavedColleges(savedWithImages);
       } catch (err: any) {
         setError(err.error || 'Failed to load saved colleges');
       } finally {
@@ -49,8 +70,9 @@ export default function SavedCollegesPage() {
       setSavedColleges((prev) =>
         prev.filter((saved) => saved.college.id !== collegeId)
       );
+      toast.success('College removed successfully');
     } catch (err) {
-      console.error('Failed to remove college');
+      toast.error('Failed to remove college');
     }
     finally {
       setRemovingId('');
@@ -92,7 +114,6 @@ export default function SavedCollegesPage() {
       </div>
     );
   }
-
   return (
     <div>
       <div className="mb-8">
@@ -103,19 +124,28 @@ export default function SavedCollegesPage() {
       {savedColleges.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {savedColleges.map((saved) => (
-            <div key={saved.id} className="relative">
-              <CollegeCard college={saved.college} />
-
+            <div key={saved.id} className="relative group">
+              <CollegeCard 
+                college={saved.college}
+                hideSaveButton={true}
+              />
               <button
+                disabled={removingId === saved.college.id}
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
                   handleRemove(saved.college.id);
                 }}
-                className="absolute bottom-3 right-3 bg-red-500 text-white px-3 py-1 rounded-md text-sm hover:bg-red-600 transition z-10"
+                className="absolute bottom-3 right-3 bg-red-500 text-white px-3 py-1 rounded-md text-sm hover:bg-red-600 hover:scale-105 hover:shadow-lg hover:shadow-red-500/30 transition-all duration-300 z-10 group-hover:-translate-y-1 disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {removingId === saved.college.id ? 'Removing...' : 'Remove'}
-              </button>
+                {removingId === saved.college.id ? (
+                  <div className="flex justify-center items-center">
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                ) : (
+                  'Remove'
+                )}
+               </button>
             </div>
           ))}
         </div>

@@ -9,6 +9,7 @@ const collegesData = [
     fees: 1200000,
     rating: 4.9,
     placementPercentage: 98,
+    image: '/colleges/iitb.jpg',
     courses: ['B.Tech Computer Science', 'B.Tech Electrical', 'B.Tech Mechanical'],
   },
   {
@@ -17,6 +18,7 @@ const collegesData = [
     fees: 1100000,
     rating: 4.8,
     placementPercentage: 97,
+    image: '/colleges/iitd.jpg',
     courses: ['B.Tech Computer Science', 'B.Tech Civil', 'B.Tech Mathematics'],
   },
   {
@@ -25,6 +27,7 @@ const collegesData = [
     fees: 2000000,
     rating: 4.7,
     placementPercentage: 95,
+    image: '/colleges/bitsp.jpg',
     courses: ['B.E. Computer Science', 'B.E. Electronics', 'B.E. Chemical'],
   },
   {
@@ -33,6 +36,7 @@ const collegesData = [
     fees: 800000,
     rating: 4.6,
     placementPercentage: 94,
+    image: '/colleges/nitt.jpg',
     courses: ['B.Tech Computer Science', 'B.Tech Instrumentation', 'B.Tech Production'],
   },
   {
@@ -41,6 +45,7 @@ const collegesData = [
     fees: 1500000,
     rating: 4.3,
     placementPercentage: 85,
+    image: '/colleges/vit.jpg',
     courses: ['B.Tech Computer Science', 'B.Tech Information Technology', 'B.Tech Biotech'],
   },
   {
@@ -49,6 +54,7 @@ const collegesData = [
     fees: 900000,
     rating: 4.5,
     placementPercentage: 92,
+    image: '/colleges/dtu.jpg',
     courses: ['B.Tech Software Engineering', 'B.Tech IT', 'B.Tech Mechanical'],
   },
   {
@@ -57,6 +63,7 @@ const collegesData = [
     fees: 1800000,
     rating: 4.2,
     placementPercentage: 80,
+    image: '/colleges/mit.jpg',
     courses: ['B.Tech Computer Science', 'B.Tech Data Science', 'B.Tech Electronics'],
   },
 ];

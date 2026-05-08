@@ -24,6 +24,7 @@ export default function LoginPage() {
         body: JSON.stringify({ email, password }),
       });
       localStorage.setItem('token', data.token);
+      window.dispatchEvent(new Event('storage'));
       router.push('/');
       router.refresh();
     } catch (err: any) {
@@ -84,7 +85,13 @@ export default function LoginPage() {
           disabled={loading}
           className="w-full bg-indigo-600 text-white rounded-xl py-2 font-medium hover:bg-indigo-700 transition disabled:opacity-50"
         >
-          {loading ? 'Logging in...' : 'Login'}
+          {loading ? (
+            <div className="flex justify-center items-center">
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          ) : (
+            'Login'
+          )}
         </button>
       </form>
       <p className="mt-4 text-center text-sm text-gray-600">

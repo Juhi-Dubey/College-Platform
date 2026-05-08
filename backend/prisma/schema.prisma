@@ -24,6 +24,7 @@ model College {
   fees                Int
   rating              Float
   placementPercentage Float
+  image               String?
   courses             Course[]
   savedByUsers        SavedCollege[]
   createdAt           DateTime       @default(now())

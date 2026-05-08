@@ -41,24 +41,21 @@ export default function Home() {
 
       const response = await fetchAPI(`/colleges?${query.toString()}`);
       const imageMap: Record<string, string> = {
-        Bombay: '/colleges/iitb.jpg',
-        Delhi: '/colleges/iitd.jpg',
-        Birla: '/colleges/bitsp.jpg',
-        Trichy: '/colleges/nitt.jpg',
-        Vellore: '/colleges/vit.jpg',
-        Manipal: '/colleges/mit.jpg',
+        'Indian Institute of Technology Bombay': '/colleges/iitb.jpg',
+        'Indian Institute of Technology Delhi': '/colleges/iitd.jpg',
+        'Birla Institute of Technology and Science': '/colleges/bitsp.jpg',
+        'National Institute of Technology Trichy': '/colleges/nitt.jpg',
+        'Vellore Institute of Technology': '/colleges/vit.jpg',
+        'Delhi Technological University': '/colleges/dtu.jpg',
+        'Manipal Institute of Technology': '/colleges/mit.jpg',
       };
 
       const collegesWithImages = response.data.map((college: any) => {
-        const matchedKey = Object.keys(imageMap).find((key) =>
-          college.name.includes(key)
-        );
+        const matchedImage = imageMap[college.name];
 
         return {
           ...college,
-          image: matchedKey
-            ? imageMap[matchedKey]
-            : '/colleges/default.jpg',
+          image: matchedImage || '/colleges/default.jpg',
         };
       });
 

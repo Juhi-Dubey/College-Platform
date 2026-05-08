@@ -96,7 +96,13 @@ export default function SignupPage() {
           disabled={loading}
           className="w-full bg-indigo-600 text-white rounded-xl py-2 font-medium hover:bg-indigo-700 transition disabled:opacity-50"
         >
-          {loading ? 'Signing up...' : 'Sign Up'}
+          {loading ? (
+            <div className="flex justify-center items-center">
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          ) : (
+            'Sign Up'
+          )}
         </button>
       </form>
       <p className="mt-4 text-center text-sm text-gray-600">

@@ -17,9 +17,13 @@ export default function Navbar() {
     checkLogin();
 
     window.addEventListener('focus', checkLogin);
+    window.addEventListener('storage', checkLogin);
+
+    checkLogin();
 
     return () => {
       window.removeEventListener('focus', checkLogin);
+      window.removeEventListener('storage', checkLogin);
     };
   }, []);
 
@@ -33,13 +37,14 @@ export default function Navbar() {
   return (
     <nav className="bg-black/70 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center min-h-[72px] py-3">
+        <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-3 min-h-[72px] py-3">
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center">
-            <Link href="/" className="text-xl md:text-2xl font-bold text-indigo-600">
+            <Link href="/" className="text-2xl font-bold text-indigo-600 text-center">
               🎓 CollegeDiscovery
             </Link>
           </div>
-          <div className="flex items-center space-x-2 sm:space-x-4 flex-wrap justify-end">   <Link href="/" className="text-gray-200 hover:text-indigo-600 text-sm sm:text-base font-medium transition">
+          <div className="flex items-center justify-center sm:justify-end gap-3 flex-wrap text-sm sm:text-base">
+            <Link href="/" className="text-gray-200 hover:text-indigo-600 text-sm sm:text-base font-medium transition">
               Home
             </Link>
             <Link href="/compare" className="text-gray-200 hover:text-indigo-600 text-sm sm:text-base font-medium transition">
@@ -54,7 +59,7 @@ export default function Navbar() {
                   href="/comparisons"
                   className="text-gray-200 hover:text-indigo-600 text-sm sm:text-base font-medium transition"
                 >
-                  Comparisons
+                  Saved Comparisons
                 </Link>
                 <button
                   onClick={handleLogout}
