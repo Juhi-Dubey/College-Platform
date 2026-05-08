@@ -104,11 +104,12 @@ export default function Home() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-start gap-12 px-4"
+      
+      className="w-full max-w-[1500px] mx-auto flex flex-col md:flex-row items-start gap-10 px-6 pt-8"
     >
       {/* Sidebar Filters */}
-      <aside className="w-full md:w-80 flex-shrink-0 md:-ml-6 self-start sticky top-24">
-        <div className="bg-gradient-to-b from-gray-900 to-black p-6 pb-8 rounded-2xl shadow-2xl border border-indigo-500/20 backdrop-blur-md">
+      <aside className="w-full md:w-64 flex-shrink-0 md:-ml-6 self-start sticky top-24">
+        <div className="bg-white/5 p-6 pb-8 rounded-2xl shadow-2xl border border-indigo-500/20 backdrop-blur-md">
           <h2 className="text-lg font-bold text-white
            mb-4">Filters</h2>
           <div className="space-y-4">
@@ -124,7 +125,7 @@ export default function Home() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-3">
+              <label className="block text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
                 Fees Range
               </label>
 
@@ -153,7 +154,7 @@ export default function Home() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-3">
+              <label className="block text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
                 Courses
               </label>
 
@@ -193,7 +194,7 @@ export default function Home() {
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-3">
+              <label className="block text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
                 Placement Rate
               </label>
 
@@ -221,7 +222,7 @@ export default function Home() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-3">
+              <label className="block text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
                 Ratings
               </label>
 
@@ -271,7 +272,7 @@ export default function Home() {
       {/* Main Content */}
       <div className="flex-1">
         <div
-            className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-950 via-gray-900 to-black px-8 py-12 mb-12 shadow-2xl border border-indigo-500/20">
+            className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-950 via-gray-900 to-black px-8 py-10 mb-16 shadow-2xl border border-indigo-500/20">
 
           <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top_right,_#6366f1,_transparent_40%)]"></div>
 
@@ -280,7 +281,7 @@ export default function Home() {
               Discover Top Colleges
             </h1>
 
-            <p className="text-gray-300 mt-5 text-lg max-w-lg">
+            <p className="text-gray-300 mt-5 text-base max-w-md leading-relaxed">
               Compare colleges, explore placements, save favorites,
               and make smarter academic decisions.
             </p>
@@ -298,7 +299,7 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={() => setCurrentPage(1)}
-                  className="group flex-shrink-0 flex items-center justify-center bg-gradient-to-r from-indigo-600 to-purple-600 px-5 py-4 text-white rounded-xl transition-all duration-300 hover:brightness-110 hover:-translate-y-0.5 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/30"
+                  className="group flex-shrink-0 flex items-center justify-center bg-gradient-to-r from-indigo-600 to-purple-600 px-5 py-3.5 text-white rounded-xl transition-all duration-300 hover:brightness-110 hover:-translate-y-0.5 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/30"
                 >
                   <Search
                     size={22}
@@ -310,8 +311,7 @@ export default function Home() {
               </div>
             </div>
             <div className="mt-6">
-            {/* <div className="flex items-center bg-white/10 border border-white/10 rounded-2xl backdrop-blur-md overflow-hidden shadow-xl"></div> */}
-             <Link
+              <Link
                 href="#featured-colleges"
                 
                 className="inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-2xl hover:scale-105 hover:brightness-100 hover:shadow-xl hover:shadow-indigo-500/30 transition-all duration-300 font-semibold"
