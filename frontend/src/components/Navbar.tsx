@@ -37,13 +37,22 @@ export default function Navbar() {
   return (
     <nav className="bg-black/70 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-3 min-h-[72px] py-3">
+        <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-4 sm:gap-5 min-h-[72px] py-4">
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center">
-            <Link href="/" className="text-2xl font-bold text-indigo-600 text-center">
-              🎓 CollegeDiscovery
+            <Link
+              href="/"
+              className="flex items-center gap-2"
+            >
+              <span className="text-2xl leading-none text-indigo-400">
+                🎓
+              </span>
+
+              <span className="text-2xl font-extrabold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent tracking-tight">
+                CollegeDiscovery
+              </span>
             </Link>
           </div>
-          <div className="flex items-center justify-center sm:justify-end gap-3 flex-wrap text-sm sm:text-base">
+          <div className="flex items-center justify-center sm:justify-end gap-4 sm:gap-5 flex-wrap text-sm sm:text-base">
             <Link href="/" className="text-gray-200 hover:text-indigo-600 text-sm sm:text-base font-medium transition">
               Home
             </Link>
@@ -59,11 +68,12 @@ export default function Navbar() {
                   href="/comparisons"
                   className="text-gray-200 hover:text-indigo-600 text-sm sm:text-base font-medium transition"
                 >
-                  Saved Comparisons
+                  Compared
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="bg-indigo-600 text-white px-3 py-2 sm:px-4 rounded-md hover:bg-indigo-700 transition"
+                  className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 py-2 sm:px-4 rounded-xl hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/30 transition-all duration-300"
+                  // className="bg-indigo-600 text-white px-3 py-2 sm:px-4 rounded-md hover:bg-indigo-700 transition"
                 >
                   Logout
                 </button>

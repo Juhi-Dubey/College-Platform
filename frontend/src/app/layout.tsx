@@ -27,7 +27,7 @@ export default function RootLayout({
           {children}
         </main>
         <footer className="border-t border-white/10 mt-16 py-8 text-center text-gray-400 text-sm">
-          © 2026 CollegeDiscovery • Built with Next.js, Prisma & PostgreSQL
+          © {new Date().getFullYear()} CollegeDiscovery • Built with Next.js, Prisma & PostgreSQL
         </footer>
       </body>
     </html>

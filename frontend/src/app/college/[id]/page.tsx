@@ -1,6 +1,6 @@
 'use client';
 
-import Link from "next/link";
+
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { fetchAPI } from '@/lib/api';
@@ -120,24 +120,16 @@ export default function CollegeDetailPage() {
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Courses Offered</h2>
         {college.courses && college.courses.length > 0 ? (
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="flex flex-wrap gap-3">
             {college.courses.map((course) => (
-              <li 
-                key={course.id} 
-                className="p-3 border border-gray-100 rounded-lg hover:bg-gray-50 transition"
+              <div
+                key={course.id}
+                className="px-4 py-2 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-700 text-sm font-medium transition hover:bg-indigo-500/20"
               >
-                <Link 
-                  href={`/course/${course.id}`} 
-                  className="flex items-center w-full h-full"
-                >
-                  <div className="w-2 h-2 bg-indigo-600 rounded-full mr-3"></div>
-                  <span className="text-gray-800 font-medium hover:text-indigo-600">
-                    {course.name}
-                  </span>
-                </Link>
-              </li>
+                {course.name}
+              </div>
             ))}
-          </ul>
+          </div>
         ) : (
           <p className="text-gray-500">No courses information available.</p>
         )}

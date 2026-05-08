@@ -117,7 +117,7 @@ export default function SavedCollegesPage() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-400">Your Saved Colleges</h1>
+        <h1 className="text-3xl font-bold text-white">Your Saved Colleges</h1>
         <p className="text-gray-300 mt-2">Manage and review your shortlisted institutions.</p>
       </div>
 
