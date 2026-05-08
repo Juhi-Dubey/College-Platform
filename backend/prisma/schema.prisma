@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  password      String
+  savedColleges SavedCollege[]
+  savedComparisons SavedComparison[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model College {
+  id                  String         @id @default(uuid())
+  name                String
+  location            String
+  fees                Int
+  rating              Float
+  placementPercentage Float
+  courses             Course[]
+  savedByUsers        SavedCollege[]
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+}
+
+model Course {
+  id        String   @id @default(uuid())
+  name      String
+  collegeId String
+  college   College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SavedCollege {
+  id        String   @id @default(uuid())
+  userId    String
+  collegeId String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  college   College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, collegeId])
+}
+
+model SavedComparison {
+  id         String   @id @default(uuid())
+  userId     String
+  colleges   String[]
+  createdAt  DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
