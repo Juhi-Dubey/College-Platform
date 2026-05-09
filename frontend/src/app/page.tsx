@@ -5,7 +5,8 @@ import { fetchAPI } from '@/lib/api';
 import CollegeCard from '@/components/CollegeCard';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Search } from 'lucide-react';
+import { Search, SlidersHorizontal } from 'lucide-react';
+
 
 
 interface College {
@@ -19,6 +20,7 @@ interface College {
 }
 
 export default function Home() {
+  const [showFilters, setShowFilters] = useState(false);
   const [colleges, setColleges] = useState<College[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const collegesPerPage = 6;
@@ -108,7 +110,7 @@ export default function Home() {
       className="w-full max-w-[1400px] mx-auto flex flex-col md:flex-row items-start gap-7 px-6 pt-8"
     >
       {/* Sidebar Filters */}
-      <aside className="w-full md:w-60 flex-shrink-0 md:-ml-6 self-start md:sticky md:top-24">
+      <aside className="hidden md:block md:w-60 flex-shrink-0 md:-ml-6 self-start md:sticky md:top-24">
         <div className="bg-white/5 p-5 pb-6 rounded-2xl shadow-2xl border border-indigo-500/20 backdrop-blur-md">
           <h2 className="text-lg font-bold text-white
            mb-4">Filters</h2>
@@ -310,7 +312,18 @@ export default function Home() {
 
               </div>
             </div>
-            <div className="mt-6">
+            <div className="flex gap-4 mt-6 md:hidden">
+              <button
+                type="button"
+                onClick={() => setShowFilters(!showFilters)}
+                className="inline-flex items-center whitespace-nowrap gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-5 py-3 rounded-2xl hover:scale-105 hover:brightness-110 hover:shadow-lg hover:shadow-indigo-500/30 transition-all duration-300 font-semibold"
+              >
+                <SlidersHorizontal size={18} />
+                {showFilters ? 'Hide Filters' : 'Show Filters'}
+              </button>
+            </div>
+            <div className="mt-6 flex gap-4 items-center">
+            {/* <div className="mt-6"> */}
               <Link
                 href="#featured-colleges"
                 
@@ -321,6 +334,175 @@ export default function Home() {
             </div>
           </div>
         </div>
+        {showFilters && (
+        <div className="md:hidden mb-8">
+          <div className="bg-white/5 p-5 pb-6 rounded-2xl shadow-2xl border border-indigo-500/20 backdrop-blur-md">
+            
+            <h2 className="text-lg font-bold text-white mb-4">
+              Filters
+            </h2>
+
+            <div className="space-y-4">
+
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-1">
+                  Location
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="e.g. Delhi"
+                  className="w-full rounded-xl border border-white/10 bg-white/5 text-white placeholder-gray-400 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
+                  Fees Range
+                </label>
+
+                <div className="space-y-3">
+                  {[
+                    { label: 'Under ₹10 Lakhs', value: '1000000' },
+                    { label: 'Under ₹15 Lakhs', value: '1500000' },
+                    { label: 'Under ₹20 Lakhs', value: '2000000' },
+                  ].map((fee) => (
+                    <label
+                      key={fee.value}
+                      className="flex items-center gap-3 text-gray-300 text-sm cursor-pointer"
+                    >
+                      <input
+                        type="radio"
+                        name="mobileFees"
+                        checked={selectedFees === fee.value}
+                        onChange={() => setSelectedFees(fee.value)}
+                        className="w-4 h-4 rounded border-white/20 bg-white/5 accent-indigo-500"
+                      />
+
+                      {fee.label}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
+                  Courses
+                </label>
+
+                <div className="space-y-3">
+                  {[
+                    'Computer Science',
+                    'Electronics',
+                    'Mechanical',
+                    'Civil',
+                  ].map((course) => (
+                    <label
+                      key={course}
+                      className="flex items-center gap-3 text-gray-200 text-sm cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedCourses.includes(course)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setSelectedCourses((prev) => [
+                              ...prev,
+                              course,
+                            ]);
+                          } else {
+                            setSelectedCourses((prev) =>
+                              prev.filter((item) => item !== course)
+                            );
+                          }
+                        }}
+                        className="w-4 h-4 rounded border-white/20 bg-white/5 accent-indigo-500"
+                      />
+
+                      {course}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
+                  Placement Rate
+                </label>
+
+                <div className="space-y-3">
+                  {[
+                    '90% and above',
+                    '80% and above',
+                    '70% and above',
+                  ].map((placement) => (
+                    <label
+                      key={placement}
+                      className="flex items-center gap-3 text-gray-200 text-sm cursor-pointer"
+                    >
+                      <input
+                        type="radio"
+                        name="mobilePlacement"
+                        checked={selectedPlacement === placement}
+                        onChange={() => setSelectedPlacement(placement)}
+                        className="w-4 h-4 border-white/20 bg-white/5 accent-indigo-500"
+                      />
+                      {placement}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
+                  Ratings
+                </label>
+
+                <div className="space-y-3">
+                  {[
+                    '4.5+ Rating',
+                    '4.0+ Rating',
+                    '3.5+ Rating',
+                    '3.0+ Rating',
+                  ].map((rating) => (
+                    <label
+                      key={rating}
+                      className="flex items-center gap-3 text-gray-200 text-sm cursor-pointer"
+                    >
+                      <input
+                        type="radio"
+                        name="mobileRating"
+                        checked={selectedRating === rating}
+                        onChange={() => setSelectedRating(rating)}
+                        className="w-4 h-4 border-white/20 bg-white/5 accent-indigo-500"
+                      />
+                      {rating}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setSearch('');
+                  setLocation('');
+                  setSelectedFees('');
+                  setSelectedCourses([]);
+                  setSelectedPlacement('');
+                  setSelectedRating('');
+                }}
+                className="text-sm text-gray-200 font-medium hover:text-indigo-400 transition mt-3"
+              >
+                Clear Filters
+              </button>
+
+            </div>
+          </div>
+        </div>
+      )}
       <div className="bg-white/5 border border-white/10 rounded-3xl p-6 px-8 backdrop-blur-md">
         <div id="featured-colleges"
           className="flex items-center justify-between mb-8">
