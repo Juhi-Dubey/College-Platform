@@ -53,6 +53,14 @@ Backend API: https://college-platform-dv5r.onrender.com
 
 ![Homepage](./screenshots/homepage.png)
 
+### 🏠 Homepage (Logged In)
+
+![Homepage Logged In](./screenshots/homepage-loggedin.png)
+
+### 🎯 Homepage with Filters
+
+![Homepage Filters](./screenshots/homepage-filters.png)
+
 ### 🔐 Login Page
 
 ![Login](./screenshots/login.png)
