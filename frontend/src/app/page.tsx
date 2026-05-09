@@ -108,7 +108,7 @@ export default function Home() {
       className="w-full max-w-[1400px] mx-auto flex flex-col md:flex-row items-start gap-7 px-6 pt-8"
     >
       {/* Sidebar Filters */}
-      <aside className="w-full md:w-60 flex-shrink-0 md:-ml-6 self-start sticky top-24">
+      <aside className="w-full md:w-60 flex-shrink-0 md:-ml-6 self-start md:sticky md:top-24">
         <div className="bg-white/5 p-5 pb-6 rounded-2xl shadow-2xl border border-indigo-500/20 backdrop-blur-md">
           <h2 className="text-lg font-bold text-white
            mb-4">Filters</h2>
