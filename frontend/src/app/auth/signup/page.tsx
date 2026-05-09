@@ -106,7 +106,7 @@ export default function SignupPage() {
           )}
         </button>
       </form>
-      <p className="mt-4 text-center text-sm text-gray-600">
+      <p className="mt-5 text-center text-sm text-gray-400">
         Already have an account? <Link href="/auth/login" className="text-indigo-600 hover:underline">Login</Link>
       </p>
     </div>

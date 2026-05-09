@@ -49,7 +49,34 @@ Backend API: https://college-platform-dv5r.onrender.com
 
 ## 📸 Screenshots
 
-(Add screenshots here later)
+### 🏠 Homepage
+
+![Homepage](./screenshots/homepage.png)
+
+### 🔐 Login Page
+
+![Login](./screenshots/login.png)
+
+### 📝 Signup Page
+
+![Signup](./screenshots/signup.png)
+
+### ⚖️ Compare Colleges
+
+![Compare Colleges](./screenshots/compare-colleges.png)
+
+### ❤️ Saved Colleges
+
+![Saved Colleges](./screenshots/saved-colleges.png)
+
+### 📊 Saved Comparisons
+
+![Saved Comparisons](./screenshots/saved-comparisons.png)
+
+### 📄 College Details
+
+![College Details](./screenshots/college-details.png)
+
 
 ---
 
